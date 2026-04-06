@@ -78,7 +78,7 @@ def _parse_report(raw_report: dict) -> dict:
 
     return {
         "validator": "MobilityData",
-        "version": "6.0.0",
+        "version": "7.1.0",
         "summary": summary,
         "notices": notices,
         "raw_report": raw_report,
