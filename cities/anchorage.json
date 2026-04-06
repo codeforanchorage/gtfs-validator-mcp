@@ -1,0 +1,35 @@
+{
+  "city": "Anchorage",
+  "state": "AK",
+  "agency": "Municipality of Anchorage People Mover",
+  "agency_id": "0",
+  "repo": "codeforanchorage/gtfs_update",
+  "current_path": "current",
+  "incoming_path": "incoming",
+  "feed_source_url": "https://prior-url-for-gtfs-download",
+  "timezone": "America/Anchorage",
+  "rules": {
+    "expected_agency_count": 1,
+    "expected_fare_count": 1,
+    "required_files": [
+      "agency.txt",
+      "calendar.txt",
+      "calendar_dates.txt",
+      "fare_attributes.txt",
+      "routes.txt",
+      "shapes.txt",
+      "stop_times.txt",
+      "stops.txt",
+      "trips.txt",
+      "feed_info.txt"
+    ],
+    "max_stop_location_drift_meters": 50,
+    "trip_count_change_warning_pct": 30,
+    "stop_count_change_warning_pct": 20,
+    "route_count_change_warning_pct": 25,
+    "require_shapes": true,
+    "require_feed_info": true,
+    "require_wheelchair_accessibility": false,
+    "fare_must_not_be_empty": true
+  }
+}
