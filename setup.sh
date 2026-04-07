@@ -31,8 +31,19 @@ if [ ! -f "$ETALAB_BIN" ]; then
   cd "$ETALAB_BUILD_DIR"
   git checkout "$ETALAB_COMMIT"
   cargo build --release --no-default-features
-  # Binary is src/bin/main.rs, so Cargo names it "main"
-  cp target/release/main "$ETALAB_BIN"
+  # Find the built binary — name varies by Cargo version
+  echo "Build artifacts:"
+  ls -la target/release/
+  # Try known possible names
+  if [ -f target/release/main ]; then
+    cp target/release/main "$ETALAB_BIN"
+  elif [ -f target/release/validator ]; then
+    cp target/release/validator "$ETALAB_BIN"
+  else
+    echo "ERROR: Could not find built binary. Contents of target/release/:"
+    find target/release/ -maxdepth 1 -type f -executable
+    exit 1
+  fi
   chmod +x "$ETALAB_BIN"
   cd -
   rm -rf "$ETALAB_BUILD_DIR"
