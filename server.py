@@ -431,5 +431,7 @@ def _combine_summaries(pass1: dict, pass2: dict, city_checks: list) -> dict:
 
 if __name__ == "__main__":
     import sys
-    print("Starting GTFS Validator MCP Server...", file=sys.stderr)
-    mcp.run(transport="sse", host="0.0.0.0", port=8080)
+    import uvicorn
+    print("Starting GTFS Validator MCP Server on port 8080...", file=sys.stderr)
+    app = mcp.sse_app()
+    uvicorn.run(app, host="0.0.0.0", port=8080)
