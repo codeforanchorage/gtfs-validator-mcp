@@ -432,6 +432,23 @@ def _combine_summaries(pass1: dict, pass2: dict, city_checks: list) -> dict:
 if __name__ == "__main__":
     import sys
     import uvicorn
+    from starlette.applications import Starlette
+    from starlette.responses import JSONResponse
+    from starlette.routing import Route, Mount
+
     print("Starting GTFS Validator MCP Server on port 8080...", file=sys.stderr)
-    app = mcp.sse_app()
-    uvicorn.run(app, host="0.0.0.0", port=8080, server_header=False, proxy_headers=True, forwarded_allow_ips="*")
+
+    sse_app = mcp.sse_app()
+
+    async def health(request):
+        return JSONResponse({"status": "ok", "service": "gtfs-validator-mcp"})
+
+    app = Starlette(
+        routes=[
+            Route("/", health),
+            Route("/health", health),
+            Mount("/", app=sse_app),
+        ],
+    )
+
+    uvicorn.run(app, host="0.0.0.0", port=8080)
