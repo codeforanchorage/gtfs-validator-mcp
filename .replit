@@ -1,4 +1,4 @@
-run = "bash setup.sh && pip install -r requirements.txt && python server.py"
+run = "bash setup.sh && python -m venv .venv 2>/dev/null; .venv/bin/pip install -q -r requirements.txt && .venv/bin/python server.py"
 entrypoint = "server.py"
 
 [nix]
