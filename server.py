@@ -22,11 +22,7 @@ from gtfs_diff import diff_feeds
 CITIES_DIR = Path(__file__).parent / "cities"
 CACHE_DIR = Path(__file__).parent / "cache"
 
-mcp = FastMCP(
-    "GTFS Validator",
-    version="0.1.0",
-    description="Validates GTFS feeds using MobilityData and Etalab validators with city-specific rules",
-)
+mcp = FastMCP("GTFS Validator")
 
 
 # --- Helpers ---
