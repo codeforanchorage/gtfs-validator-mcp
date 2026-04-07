@@ -434,4 +434,4 @@ if __name__ == "__main__":
     import uvicorn
     print("Starting GTFS Validator MCP Server on port 8080...", file=sys.stderr)
     app = mcp.sse_app()
-    uvicorn.run(app, host="0.0.0.0", port=8080)
+    uvicorn.run(app, host="0.0.0.0", port=8080, server_header=False, proxy_headers=True, forwarded_allow_ips="*")
