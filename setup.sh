@@ -2,7 +2,7 @@
 # Downloads MobilityData GTFS Validator JAR and builds Etalab transport-validator
 set -e
 
-VALIDATORS_DIR="$(dirname "$0")/bin"
+VALIDATORS_DIR="$(cd "$(dirname "$0")" && pwd)/bin"
 mkdir -p "$VALIDATORS_DIR"
 
 # --- MobilityData GTFS Validator ---
