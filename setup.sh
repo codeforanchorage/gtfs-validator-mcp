@@ -31,8 +31,8 @@ if [ ! -f "$ETALAB_BIN" ]; then
   cd "$ETALAB_BUILD_DIR"
   git checkout "$ETALAB_COMMIT"
   cargo build --release --no-default-features
-  # Crate name is "validator", not "transport-validator"
-  cp target/release/validator "$ETALAB_BIN"
+  # Binary is src/bin/main.rs, so Cargo names it "main"
+  cp target/release/main "$ETALAB_BIN"
   chmod +x "$ETALAB_BIN"
   cd -
   rm -rf "$ETALAB_BUILD_DIR"
